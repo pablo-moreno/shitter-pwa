@@ -12,6 +12,15 @@ export default {
   name: "Home",
   components: {
 
+  },
+  created() {
+    this.fetchShits()
+  },
+  methods: {
+    async fetchShits() {
+      const { data } = await this.$http.get('shitter/shits')
+      console.info('shits', data)
+    }
   }
-};
+}
 </script>
