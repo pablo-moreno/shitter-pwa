@@ -1,17 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <div>Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>
+    <list-view :items="shits">
+      <template #default="{ item }">
+        <shit :shit="item" />
+      </template>
+
+    </list-view>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import ListView from '@/components/ListView'
+import Shit from '@/components/Shit'
+
 
 export default {
   name: "Home",
   components: {
-
+    ListView,
+    Shit,
+  },
+  data() {
+    return {
+      shits: []
+    }
   },
   created() {
     this.fetchShits()
@@ -19,7 +31,7 @@ export default {
   methods: {
     async fetchShits() {
       const { data } = await this.$http.get('shitter/shits')
-      console.info('shits', data)
+      this.shits = data.results
     }
   }
 }

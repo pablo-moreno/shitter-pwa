@@ -2,7 +2,7 @@
   <div class="login-view">
     <form class="login-form" @submit.prevent="login">
       <header class="login-form-header">
-        <icon source="@/assets/poop.svg" alt="Shitter" />
+        <img class="icon-wrapper icon-large" src="@/assets/poop.svg" alt="Shitter" />
       </header>
       <div class="login-form-fields">
         <input type="text" v-model="username" placeholder="Username">
@@ -16,12 +16,7 @@
   </div>
 </template>
 <script>
-import Icon from '@/components/Icon'
-
 export default {
-  components: {
-    Icon,
-  },
   data() {
     return {
       username: '',

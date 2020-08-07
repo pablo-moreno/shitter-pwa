@@ -1,0 +1,21 @@
+.icon-small {
+    width: 64px;
+    height: 64px;
+}
+
+.icon-medium {
+    width: 96px;
+    height: 96px;
+}
+
+.icon-large {
+    width: 128px;
+    height: 128px;
+}
+
+.icon-wrapper {
+    border-radius: 100%;
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+}
