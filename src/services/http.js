@@ -38,24 +38,28 @@ class BaseHttpAPIService {
     }
   }
 
-  async get(url, query={}, config={}) {
-    const headers = this.getHeaders()
-    return this.http.get(url, { query, headers, ...config })
+  getUrl(...params) {
+    return params.join('/')
   }
 
-  async post(url, data, query={}, config={}) {
+  async get(url, params={}, config={}) {
     const headers = this.getHeaders()
-    return this.http.post(url, data, { headers, query, ...config })    
+    return this.http.get(url, { params, headers, ...config })
   }
 
-  async put(url, data, query={}, config={}) {
+  async post(url, data, params={}, config={}) {
     const headers = this.getHeaders()
-    return this.http.put(url, data, { headers, query, ...config })
+    return this.http.post(url, data, { headers, params, ...config })    
   }
 
-  async delete(url, query={}, config={}) {
+  async put(url, data, params={}, config={}) {
     const headers = this.getHeaders()
-    return this.http.delete(url, { headers, query, ...config })
+    return this.http.put(url, data, { headers, params, ...config })
+  }
+
+  async delete(url, params={}, config={}) {
+    const headers = this.getHeaders()
+    return this.http.delete(url, { headers, params, ...config })
   }
 }
 

@@ -1,6 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "@/views/Home.vue"
+import ShitDetail from "@/views/shits/ShitDetail.vue"
+import UserDetails from "@/views/users/UserDetails.vue"
 import { Login, SignUp } from '@/views/auth'
 import { isAuthenticated } from '../utils'
 
@@ -11,6 +13,22 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+    meta: {
+      protected: true,
+    }
+  },
+  {
+    path: "/shit/:uuid",
+    name: "shit-detail",
+    component: ShitDetail,
+    meta: {
+      protected: true,
+    }
+  },
+  {
+    path: "/i/:username",
+    name: "user-details",
+    component: UserDetails,
     meta: {
       protected: true,
     }

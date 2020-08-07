@@ -14,7 +14,7 @@
       </li>
     </ul>
 
-    <div v-if="items.length === 0">
+    <div v-if="items.length === 0 && !loading">
       <slot name="empty">
         There aren't any items.
       </slot>
@@ -33,6 +33,10 @@ export default {
   props: {
     items: {
       type: Array,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     }
   }
 }
@@ -41,5 +45,8 @@ export default {
 <style lang="scss" scoped>
 ul {
   list-style: none;
+  margin: 0;
+  padding: 1em;
+  background-color: #ddb226;
 }
 </style>

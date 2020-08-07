@@ -1,12 +1,60 @@
 <template>
   <article class="shit">
-    <header class="shit-header">
-      <img class="icon-wrapper icon-medium" :src="shit.user.profile.profile_picture" :alt="`@${shit.user.username}`">
-      <div class="shit-user-info">
-        <h4>{{ shit.user.username }}</h4>
-      </div>
-    </header>
     <div class="shit-content">
+      
+      <div class="shit-left">
+        <img class="icon-wrapper icon-small" 
+            :src="shit.user.profile.profile_picture" 
+            :alt="`@${shit.user.username}`"
+        />
+      </div>
+
+      <div class="shit-center">
+        <div class="shit-header">
+
+          <h4>
+            <router-link :to="{ name: 'user-details', params: { username: shit.user.username }}">
+              {{ shit.user.username }}
+            </router-link>
+          </h4>
+
+          <router-link :to="{name: 'shit-detail', params: {uuid: shit.uuid}}">
+            {{ shit.publish_date | formatdate }}
+          </router-link>
+        </div>
+
+        <p>
+          {{ shit.text }}
+        </p>
+      </div>
+    </div>
+    <div class="shit-feedback">
+
+      <div class="shit-feedback-item">
+        <button class="reshit" @click="$emit('reshit', shit)">
+          <i class="fas fa-retweet" />
+          
+        </button>
+        <span>
+            {{ shit.reshits }}
+          </span>
+      </div>
+
+      <div class="shit-feedback-item">
+        <button class="favourite" 
+               :class="{'is-favourte': shit.is_favourite}" 
+               @click="$emit('favourite', shit)"
+        >
+         <i class="fas fa-poop" />
+        </button>
+         <span> {{ shit.favourites }} </span>
+      </div>
+
+      <div class="shit-feedback-item">
+        <button class="link">
+          <i class="fas fa-link"></i>
+        </button>
+      </div>
 
     </div>
   </article>
@@ -18,6 +66,103 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
 }
 </script>
+<style lang="scss" scoped>
+.shit {
+  background-color: white;
+  max-width: 720px;
+  padding: 1em;
+  border-radius: 16px;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  p {
+    margin: .25em 0 .25em 0;
+  }
+
+  &-content {
+    display: flex;
+  }
+
+  &-center {
+    margin: 0 1em 0 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h4 {
+    margin: 0 .25em 0 0;
+  }
+
+  &-header {
+    display: flex;
+  }
+
+  &-feedback {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      margin: 0 2em 0 2em;
+      align-items: center;
+
+      span {
+        margin-left: 1em;
+      }
+    }
+    
+    .favourite:hover {
+      color: rgb(131, 57, 8);
+    }
+
+    .is-favourite {
+      color: rgb(131, 57, 8);
+    }
+
+    .reshit:hover {
+      color: rgb(0, 155, 0);
+    }
+
+    .is-reshit {
+      color: rgb(0, 155, 0);
+    }
+
+    .link:hover {
+      color: #333;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      align-items: center;
+      cursor: pointer;
+      border: none;
+
+      &:hover {
+        background-color: darken(white, 10%);
+      }
+    }
+  }
+}
+
+a, a:visited, a:active {
+  color: #b38f1b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darken(#b38f1b, 10%);
+}
+
+</style>

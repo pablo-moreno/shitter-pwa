@@ -3,6 +3,7 @@ import App from "./App.vue"
 import "./registerServiceWorker"
 import router from "./router"
 import store from "./store"
+import { formatDate } from './filters'
 import BaseHttpAPIService from './services/http'
 
 Vue.config.productionTip = false
@@ -14,6 +15,9 @@ class HttpAPIService extends BaseHttpAPIService {
 }
 
 Vue.prototype.$http = new HttpAPIService()
+
+
+Vue.filter('formatdate', formatDate)
 
 new Vue({
   router,

@@ -15,6 +15,7 @@
     </form>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -30,7 +31,7 @@ export default {
         password: this.password,
       })
       this.$store.dispatch('login', data)
-      this.$router.push({name: 'home'})
+      this.$router.push({ name: 'home' })
     }
   }
 }
@@ -66,10 +67,14 @@ export default {
 
       input, button {
         margin: 0.5em 1em;
-        width: 300px;
+        min-width: 200px;
         border-radius: 8px;
         padding: 8px;
         border: none;
+      }
+
+      button {
+        cursor: pointer;
       }
 
     }

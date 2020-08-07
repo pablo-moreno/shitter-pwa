@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <div class="shit-list-view">
 
       <list-view :items="shits" :loading="loading">
@@ -27,9 +27,7 @@
 import ListView from '@/components/ListView'
 import Shit from '@/components/Shit'
 
-
 export default {
-  name: "Home",
   components: {
     ListView,
     Shit,
@@ -41,19 +39,17 @@ export default {
     }
   },
   created() {
-    this.fetchShits()
+    this.fetchUserShits()
   },
   methods: {
-    async fetchShits() {
+    async fetchUserShits() {
       this.loading = true
-      const { data } = await this.$http.get('shitter/shits')
+      const { data } = await this.$http.get('shitter/shits', {
+        user: this.$route.params.username
+      })
       this.loading = false
       this.shits = data.results
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-
-
-</style>
