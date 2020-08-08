@@ -1,0 +1,28 @@
+stages:
+  - build
+
+variables:
+  APP_VERSION: $CI_COMMIT_TAG
+
+build_tag_image:
+  stage: build
+  services:
+    - docker:19.03.1-dind
+  environment:
+    name: prod
+  only:
+    - tags
+
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+
+  before_script:
+    - echo "VUE_APP_API_URL=$VUE_APP_API_URL" > .env
+    - echo "VUE_APP_HTTP_AUTHORIZATION_HEADER=$VUE_APP_HTTP_AUTHORIZATION_HEADER" >> .env
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_DOCKER_REGISTRY
+    - docker build --build-arg VERSION=$APP_VERSION --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG .
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - docker push $CI_REGISTRY_IMAGE:latest
