@@ -5,6 +5,7 @@ variables:
   APP_VERSION: $CI_COMMIT_TAG
 
 build_tag_image:
+  image: docker:19.03.1
   stage: build
   services:
     - docker:19.03.1-dind
