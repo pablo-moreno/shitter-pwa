@@ -1,8 +1,18 @@
 stages:
+  - test
   - build
 
 variables:
   APP_VERSION: $CI_COMMIT_TAG
+
+run_tests:
+  image: node:12.16.3
+  stage: test
+  
+  script:
+    - npm i
+    - npm run test:unit
+
 
 build_tag_image:
   stage: build
