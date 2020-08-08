@@ -15,6 +15,7 @@ run_tests:
 
 
 build_tag_image:
+  image: docker:19.03.1
   stage: build
   services:
     - docker:19.03.1-dind
