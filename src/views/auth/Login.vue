@@ -37,8 +37,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/styles/colors.scss';
+
 .login-view {
-  background-color: #fecf32;
+  background-color: $primary;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -43,10 +43,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/colors.scss';
+
 ul {
   list-style: none;
   margin: 0;
   padding: 1em;
-  background-color: #ddb226;
+  background-color: $darkgold;
+
+  @media screen and (max-width: 780px) {
+    margin: 1em;
+  }
 }
 </style>

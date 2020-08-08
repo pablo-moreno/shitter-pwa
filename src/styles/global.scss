@@ -1,27 +1,61 @@
+@import './colors.scss';
+
 .icon-small {
-    width: 64px;
-    height: 64px;
+  width: 64px;
+  height: 64px;
 }
 
 .icon-medium {
-    width: 96px;
-    height: 96px;
+  width: 96px;
+  height: 96px;
 }
 
 .icon-large {
-    width: 128px;
-    height: 128px;
+  width: 128px;
+  height: 128px;
 }
 
 .icon-wrapper {
-    border-radius: 100%;
-    border: solid 2px black;
-    display: flex;
-    justify-content: center;
+  border-radius: 100%;
+  border: solid 2px black;
+  display: flex;
+  justify-content: center;
 }
 
 .shit-list-view {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a,
+a:visited,
+a:active {
+  color: $link;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $darklink;
+}
+
+.default-button {
+  border: solid 2px $primary;
+  border-radius: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5em;
+
+  &:hover {
+    background-color: $primary;
+  }
+}
+
+.unfollow {
+  &:hover {
+    background-color: $danger;
+    border: solid 2px $danger;
+    color: white;
+  }
 }

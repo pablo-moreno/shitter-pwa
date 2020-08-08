@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 @import '@/styles/global.scss';
+@import '@/styles/colors.scss';
 
 body {
   margin: 0;
@@ -40,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background-color: #fecf32;
+  background-color: $primary;
   min-height: 100vh;
 }
 

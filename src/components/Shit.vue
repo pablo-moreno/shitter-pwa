@@ -3,10 +3,12 @@
     <div class="shit-content">
       
       <div class="shit-left">
-        <img class="icon-wrapper icon-small" 
-            :src="shit.user.profile.profile_picture" 
-            :alt="`@${shit.user.username}`"
-        />
+        <router-link :to="{name: 'user-details', params: { username: shit.user.username }}">
+          <img class="icon-wrapper icon-small" 
+              :src="shit.user.profile.profile_picture" 
+              :alt="`@${shit.user.username}`"
+          />
+        </router-link>
       </div>
 
       <div class="shit-center">
@@ -42,7 +44,7 @@
 
       <div class="shit-feedback-item">
         <button class="favourite" 
-               :class="{'is-favourte': shit.is_favourite}" 
+               :class="{'is-favourite': shit.is_favourite}" 
                @click="$emit('favourite', shit)"
         >
          <i class="fas fa-poop" />
@@ -70,6 +72,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/styles/colors.scss';
+
 .shit {
   background-color: white;
   max-width: 720px;
@@ -119,20 +123,13 @@ export default {
       }
     }
     
-    .favourite:hover {
-      color: rgb(131, 57, 8);
+    .favourite:hover, .is-favourite {
+      color: $poop;
     }
 
-    .is-favourite {
-      color: rgb(131, 57, 8);
-    }
 
-    .reshit:hover {
-      color: rgb(0, 155, 0);
-    }
-
-    .is-reshit {
-      color: rgb(0, 155, 0);
+    .reshit:hover, .is-reshit {
+      color: $success;
     }
 
     .link:hover {
@@ -154,15 +151,6 @@ export default {
       }
     }
   }
-}
-
-a, a:visited, a:active {
-  color: #b38f1b;
-  text-decoration: none;
-}
-
-a:hover {
-  color: darken(#b38f1b, 10%);
 }
 
 </style>

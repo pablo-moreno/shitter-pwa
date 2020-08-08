@@ -8,27 +8,35 @@
       </div>
       <h2>
         <router-link :to="{'name': 'home'}">
-          Shitter
+          <span>
+            Shitter
+          </span>
         </router-link>
       </h2>
     </div>
     <div class="navbar-end">
       <button class="navbar-logout" @click="$emit('logout')">
-        Logout
+        <i class="fas fa-sign-out-alt"></i>
+        <span>
+          Logout
+        </span>
       </button>
     </div>  
   </nav>
 </template>
 
 <style lang="scss" scoped>
+@import '@/styles/colors.scss';
+
 .navbar {
   position: fixed;
   height: 64px;
   width: 100%;
-  background-color: rgb(82, 33, 0);
+  background-color: $navbar;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 10;
 
   .navbar-start {
     display: flex;
@@ -39,6 +47,14 @@
     display: flex;
     justify-content: center;
     margin-left: 1em;
+
+    
+  }
+
+  @media screen and (max-width: 480px) {
+    span {
+      display: none;
+    }
   }
 
   .navbar-logo > a > img {
@@ -48,12 +64,19 @@
   .navbar-logout {
     border: none;
     background-color: transparent;
+    margin-right: 1em;
     font-size: 20px;
-    color: #b38f1b;
+    color: $link;
     cursor: pointer;
 
     &:hover {
-      color: darken(#b38f1b, 10%);
+      color: $darklink;
+    }
+
+    @media screen and (max-width: 480px) {
+      span {
+        display: none;
+      }
     }
   }
 
@@ -66,11 +89,11 @@
   }
 
   a {
-    color: #b38f1b;
+    color: $link;
     text-decoration: none;
 
     &:hover {
-      color: darken(#b38f1b, 10%);
+      color: $darklink;
     }
   }
 }
