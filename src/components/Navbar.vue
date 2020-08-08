@@ -51,7 +51,7 @@
     
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 640px) {
     span {
       display: none;
     }
@@ -73,7 +73,7 @@
       color: $darklink;
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 640px) {
       span {
         display: none;
       }

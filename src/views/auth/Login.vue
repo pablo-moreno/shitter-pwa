@@ -8,6 +8,9 @@
         <input type="text" v-model="username" placeholder="Username">
         <input type="password" v-model="password" placeholder="Password">
 
+        <span v-if="error">
+          {{ error.message }}
+        </span>
         <button>
           Login
         </button>
@@ -22,16 +25,22 @@ export default {
     return {
       username: '',
       password: '',
+      error: '',
     }
   },
   methods: {
     async login() {
-      const { data } = await this.$http.post('auth/login', {
-        username: this.username,
-        password: this.password,
-      })
-      this.$store.dispatch('login', data)
-      this.$router.push({ name: 'home' })
+      try {
+        const { data } = await this.$http.post('auth/login', {
+          username: this.username,
+          password: this.password,
+        })
+        this.$store.dispatch('login', data)
+        this.$router.push({ name: 'home' })
+      } 
+      catch (error) {
+        this.error = error
+      }
     }
   }
 }
@@ -48,7 +57,7 @@ export default {
   .login-form {
     display: flex;
     background-color: #EEE;
-    margin: 4rem;
+    margin: 1rem;
     min-width: 50%;
     justify-content: center;
     flex-direction: column;

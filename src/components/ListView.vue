@@ -16,7 +16,7 @@
 
     <div v-if="items.length === 0 && !loading">
       <slot name="empty">
-        There aren't any items.
+        
       </slot>
     </div>
 

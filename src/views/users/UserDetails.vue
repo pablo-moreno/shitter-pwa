@@ -56,7 +56,7 @@
               <div v-if="user.username === me.username">
                 <shit-post />
               </div>
-              
+
             </header>
             
             
@@ -154,8 +154,13 @@ export default {
   position: relative;
   min-height: 144px;
   background-color: white;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   margin: 1em 0 0 0;
+
+  @media screen and (max-width: 780px) {
+    margin: 0;
+    border-radius: 0;
+  }
 
   &-background {
     height: 100%;
@@ -174,6 +179,10 @@ export default {
       width: 100%;
       height: 200px;
       border-radius: 16px 16px 0 0;
+
+        @media screen and (max-width: 780px) {
+          border-radius: 0;
+        }
     }
 
   }
