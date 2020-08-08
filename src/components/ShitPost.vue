@@ -4,7 +4,7 @@
 
       <div class="shit-post-user">
         <router-link :to="{name: 'user-details', params: { username: user.username }}">
-          <img class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.profile.profile_picture}`" srcset="">
+          <img class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.username}`">
         </router-link>
         <input type="text" v-model="text" placeholder="Write your next shit!" />
       </div>
