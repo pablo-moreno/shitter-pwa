@@ -42,7 +42,6 @@ build_tag_image:
 deploy_prod:
   image: registry.gitlab.com/pablo-moreno/builder
   stage: deploy
-  extends: .slack
   environment:
     name: prod
   needs:
@@ -50,11 +49,6 @@ deploy_prod:
   only:
     - tags
   when: manual
-  variables:
-    INIT_MESSAGE: ":rocket: deploying $CI_REGISTRY_IMAGE to production"
-    ERROR_MESSAGE: ":x: Oops. Something went wrong :violin:"
-    SUCCESS_MESSAGE: ":tada: We're in production!"
-
   script:
     - wget --post-data "" $CD_WEBHOOK
     - touch /tmp/success
