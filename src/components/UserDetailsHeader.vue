@@ -50,8 +50,8 @@
               <router-link
                 class="followers-link"
                 :to="{
-                  name: 'followers-list',
-                  params: { username: user.username },
+                  name: 'users-list',
+                  query: { following: user.username },
                 }"
               >
                 {{ user.following_count }} <span>Following</span>
@@ -59,8 +59,8 @@
               <router-link
                 class="followers-link"
                 :to="{
-                  name: 'followers-list',
-                  params: { username: user.username },
+                  name: 'users-list',
+                  query: { followers: user.username },
                 }"
               >
                 {{ user.followers_count }} <span>Followers</span>
@@ -158,7 +158,6 @@ export default {
   min-height: 144px;
   background-color: white;
   border-radius: 16px 16px 0 0;
-  margin: 1em 0 0 0;
 
   @media screen and (max-width: 780px) {
     margin: 0;
@@ -181,13 +180,11 @@ export default {
     img {
       width: 100%;
       height: 200px;
-      border-radius: 16px 16px 0 0;
 
         @media screen and (max-width: 780px) {
           border-radius: 0;
         }
     }
-
   }
 
   .user-description {

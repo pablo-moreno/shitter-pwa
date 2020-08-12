@@ -2,7 +2,6 @@
   <div class="list-view">
     <header class="list-view-header">
       <slot name="header">
-        This is the default header and will appear if we don't specify anything
       </slot>
     </header>
 
@@ -22,7 +21,6 @@
 
     <footer class="list-view-footer">
       <slot name="footer">
-        This is the default footer
       </slot>
     </footer>
   </div>
@@ -47,6 +45,15 @@ export default {
 
 .list-view {
   box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px;
+  min-width: 780px;
+
+  @media screen and (max-width: 1024px) {
+    min-width: 640px;
+  }
+
+  @media screen and (max-width: 768px) {
+    min-width: 0px;
+  }
 }
 
 ul {

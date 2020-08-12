@@ -4,6 +4,7 @@ import Home from "@/views/Home.vue"
 import Offline from "@/views/Offline.vue"
 import ShitDetail from "@/views/shits/ShitDetail.vue"
 import UserDetails from "@/views/users/UserDetails.vue"
+import UserList from "@/views/users/UserList.vue"
 import { Login, SignUp } from '@/views/auth'
 import { isAuthenticated } from '../utils'
 
@@ -48,6 +49,14 @@ const routes = [
     component: Login,
     meta: {
       protected: false,
+    }
+  },
+  {
+    path: '/users',
+    name: 'users-list',
+    component: UserList,
+    meta: {
+      protected: true,
     }
   },
   {

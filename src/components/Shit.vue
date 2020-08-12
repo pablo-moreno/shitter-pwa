@@ -52,12 +52,6 @@
          <span> {{ shit.favourites }} </span>
       </div>
 
-      <div class="shit-feedback-item">
-        <button class="link">
-          <i class="fas fa-link"></i>
-        </button>
-      </div>
-
     </div>
   </article>
 </template>
@@ -88,11 +82,18 @@ export default {
   background-color: white;
   max-width: 720px;
   padding: 1em;
-  border-radius: 16px;
+  border-radius: 8px;
   margin-bottom: 1em;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  box-shadow: rgba($color: #000000, $alpha: 0.4) 0 0 8px;
+
+  &:hover {
+    box-shadow: rgba($color: #000000, $alpha: 0.7) 0 0 12px;
+    transition: 0.25s ease-in;
+
+  }
 
   p {
     margin: .25em 0 .25em 0;
