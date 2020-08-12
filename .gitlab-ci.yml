@@ -1,6 +1,7 @@
 stages:
   - test
   - build
+  - deploy
 
 variables:
   APP_VERSION: $CI_COMMIT_TAG
@@ -37,3 +38,17 @@ build_tag_image:
     - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
     - docker push $CI_REGISTRY_IMAGE:latest
+
+deploy_prod:
+  image: registry.gitlab.com/pablo-moreno/builder
+  stage: deploy
+  environment:
+    name: prod
+  needs:
+    - build_tag_image
+  only:
+    - tags
+  when: manual
+  script:
+    - wget --post-data "" $CD_WEBHOOK
+    - touch /tmp/success
