@@ -26,8 +26,13 @@
         />
       </label>
       
-      <input style="display: none" type="file" id="user-image" :disabled="false" @change="uploadImage">
-      
+      <input 
+        style="display: none" 
+        type="file" 
+        id="user-image" 
+        :disabled="user.username === me.username" 
+        @change="uploadImage"
+      >
 
       <div class="user-background-picture">
         <img src="@/assets/background.jpg" :alt="user.username" />

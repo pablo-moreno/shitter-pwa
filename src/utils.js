@@ -5,3 +5,7 @@ export const isAuthenticated = () => {
 
   return token !== undefined && user !== undefined 
 }
+
+export const isOffline = () => {
+  return store.state.status.offline
+}

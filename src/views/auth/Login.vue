@@ -5,6 +5,9 @@
         <img class="icon-wrapper icon-large" src="@/assets/poop.svg" alt="Shitter" />
       </header>
       <div class="login-form-fields">
+        <h2>
+          Shitter
+        </h2>
         <input type="text" v-model="username" placeholder="Username">
         <input type="password" v-model="password" placeholder="Password">
 

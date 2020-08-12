@@ -4,6 +4,10 @@
     <div class="content">
       <router-view />
     </div>
+    <!-- <div class="snackbar-notification">
+      <snackbar text="Hellow" />
+      <snackbar text="Hellow" />
+    </div> -->
   </div>
 </template>
 
@@ -20,11 +24,12 @@ export default {
     isAuthenticated: state => state.auth.user && state.auth.token
   }),
   created() {
-    const events = ['ready', 'registered', 'cached', 'updated', 'updatefound', 'offline', 'sw-error']
-
-    events.forEach(event => {
-      EventBus.$on(event, () => {
-        console.log(`${event.toUpperCase()} event dispatched on Service Worker`)
+    const router = this.$router
+    const store = this.$store
+    EventBus.$on('offline', function() {
+      store.dispatch('setOffline')
+      router.push({
+        name: 'offline'
       })
     })
   },
@@ -69,5 +74,10 @@ body {
 
 .content {
   padding-top: 64px;
+}
+
+.snackbar-notifications {
+  display: flex;
+  width: 100%;
 }
 </style>
