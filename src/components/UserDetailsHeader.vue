@@ -3,23 +3,24 @@
     <header class="user-details-header-background">
       <label for="user-image">
         <img
-          v-if="user.profile.profile_picture && !previewImage"
+          v-if="user.username === me.username && me.profile.profile_picture"
+          class="icon-wrapper icon-large floating-icon"
+          :src="me.profile.profile_picture"
+          :alt="`@${user.username} at Shitter`"
+          label="User image" for="user-image"
+        />
+
+        <img
+          v-if="user.profile.profile_picture"
           class="icon-wrapper icon-large floating-icon"
           :src="user.profile.profile_picture"
           :alt="`@${user.username} at Shitter`"
           label="User image" for="user-image"
         />
         <img
-          v-if="!user.profile.profile_picture && !previewImage"
+          v-if="!user.profile.profile_picture"
           class="icon-wrapper icon-large floating-icon has-background"
           src="@/assets/user-2.svg"
-          :alt="`@${user.username} at Shitter`"
-          label="User image" for="user-image"
-        />
-        <img
-          v-if="previewImage"
-          class="icon-wrapper icon-large floating-icon has-background"
-          :src="previewImage"
           :alt="`@${user.username} at Shitter`"
           label="User image" for="user-image"
         />
@@ -84,14 +85,6 @@
               Unfollow
             </button>
 
-            <button
-              v-if="user.username === me.username"
-              class="default-button follow"
-              @click="toggleEdit"
-            >
-              Edit profile
-            </button>
-
           </div>
         </div>
       </section>
@@ -115,12 +108,6 @@ export default {
     user: {
       type: Object,
       required: true,
-    }
-  },
-  data() {
-    return {
-      edit: false,
-      previewImage: undefined,
     }
   },
   computed: mapState({
