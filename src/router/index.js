@@ -1,6 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "@/views/Home.vue"
+import Offline from "@/views/Offline.vue"
 import ShitDetail from "@/views/shits/ShitDetail.vue"
 import UserDetails from "@/views/users/UserDetails.vue"
 import { Login, SignUp } from '@/views/auth'
@@ -47,6 +48,14 @@ const routes = [
     component: Login,
     meta: {
       protected: false,
+    }
+  },
+  {
+    path: '/offline',
+    name: 'offline',
+    component: Offline,
+    meta: {
+      protected: false
     }
   }
 ]

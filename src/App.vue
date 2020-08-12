@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import EventBus from './EventBus'
 import Navbar from './components/Navbar'
 import { mapState } from 'vuex'
 
@@ -18,6 +19,15 @@ export default {
   computed: mapState({
     isAuthenticated: state => state.auth.user && state.auth.token
   }),
+  created() {
+    const events = ['ready', 'registered', 'cached', 'updated', 'updatefound', 'offline', 'sw-error']
+
+    events.forEach(event => {
+      EventBus.$on(event, () => {
+        console.log(`${event.toUpperCase()} event dispatched on Service Worker`)
+      })
+    })
+  },
   methods: {
     logout() {
       this.$store.dispatch('logout')

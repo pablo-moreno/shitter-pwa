@@ -1,0 +1,25 @@
+.nojs {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fecf32;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nojs-wrapper {
+  margin: 4rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.shitter-logo {
+  min-width: 256px;
+  max-width: 360px;
+}

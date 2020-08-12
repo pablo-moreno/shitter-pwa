@@ -1,5 +1,5 @@
 <template>
-  <article class="shit" @click="showShitDetail">
+  <article class="shit">
     <div class="shit-content">
       
       <div class="shit-left">
@@ -25,7 +25,7 @@
           </router-link>
         </div>
 
-        <p>
+        <p class="has-pointer" @click="showShitDetail">
           {{ shit.text }}
         </p>
       </div>
