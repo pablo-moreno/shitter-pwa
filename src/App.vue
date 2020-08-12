@@ -27,7 +27,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss">
 @import '@/styles/global.scss';
 @import '@/styles/colors.scss';

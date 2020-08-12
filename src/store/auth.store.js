@@ -13,6 +13,9 @@ export default {
     logout(state) {
       state.auth.user = undefined
       state.auth.token = undefined
+    },
+    updateMe(state, user) {
+      state.user = user
     }
   },
   actions: {
@@ -21,6 +24,9 @@ export default {
     },
     logout({ commit }) {
       commit("logout")
+    },
+    updateMe({ commit }, user) {
+      commit('updateMe', user)
     }
   }
 }

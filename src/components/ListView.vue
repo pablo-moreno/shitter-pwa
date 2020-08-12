@@ -50,9 +50,5 @@ ul {
   margin: 0;
   padding: 1em;
   background-color: $darkgold;
-
-  @media screen and (max-width: 780px) {
-    margin: 1em;
-  }
 }
 </style>

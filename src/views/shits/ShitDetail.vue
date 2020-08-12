@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="shit-detail">
     <shit :shit="shit" v-if="shit" />
   </div>
 </template>
@@ -9,7 +9,7 @@ import Shit from '@/components/Shit'
 
 
 export default {
-  name: "Home",
+  name: "shit-detail",
   components: {
     Shit,
   },
@@ -33,10 +33,23 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.shit-list-view {
+.shit-detail {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2em;
+
+  article {
+    min-width: 50%;
+
+    @media screen and (max-width: 1024px) {
+      min-width: 80%;
+    }
+
+    @media screen and (max-width: 760px) {
+      min-width: 100%;
+    }
+  }
 }
 
 </style>

@@ -4,7 +4,8 @@
 
       <div class="shit-post-user">
         <router-link :to="{name: 'user-details', params: { username: user.username }}">
-          <img class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.username}`">
+          <img v-if="user.profile.profile_picture" class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.username}`">
+          <img v-else class="icon-wrapper icon-small has-background" src="@/assets/user-2.svg" :alt="`@${user.username}`">
         </router-link>
         <input type="text" v-model="text" placeholder="Write your next shit!" />
       </div>
@@ -48,6 +49,7 @@ export default {
 
   &-user {
     display: flex;
+    margin-bottom: 1em;
 
     img {
       padding: .5em;

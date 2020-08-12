@@ -8,10 +8,14 @@
         <input type="text" v-model="username" placeholder="Username">
         <input type="password" v-model="password" placeholder="Password">
 
+        <router-link :to="{'name': 'sign-up'}">
+          Don't you have an account? You can sign up here!
+        </router-link>
+
         <span v-if="error">
           {{ error.message }}
         </span>
-        <button>
+        <button class="default-button">
           Login
         </button>
       </div>
@@ -46,49 +50,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/styles/colors.scss';
-
-.login-view {
-  background-color: $primary;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .login-form {
-    display: flex;
-    background-color: #EEE;
-    margin: 1rem;
-    min-width: 50%;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 16px;
-    padding: 2em;
-
-    &-header {
-      display: flex;
-      justify-content: center;
-    }
-
-    &-fields {
-      margin: 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      input, button {
-        margin: 0.5em 1em;
-        min-width: 200px;
-        border-radius: 8px;
-        padding: 8px;
-        border: none;
-      }
-
-      button {
-        cursor: pointer;
-      }
-
-    }
-  }
+a {
+  font-size: 16px;
 }
 </style>

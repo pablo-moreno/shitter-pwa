@@ -1,5 +1,5 @@
 <template>
-  <article class="shit">
+  <article class="shit" @click="showShitDetail">
     <div class="shit-content">
       
       <div class="shit-left">
@@ -53,7 +53,7 @@
       </div>
 
       <div class="shit-feedback-item">
-        <button class="link">
+        <button class="link" @click="copyLink">
           <i class="fas fa-link"></i>
         </button>
       </div>
@@ -69,6 +69,16 @@ export default {
       required: true
     }
   },
+  methods: {
+    showShitDetail() {
+      this.$router.push({
+        name: 'shit-detail',
+        params: {
+          uuid: this.shit.uuid
+        }
+      })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
