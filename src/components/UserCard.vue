@@ -67,13 +67,10 @@ export default {
     async follow(state) {
       try {
         if (state) {
-          await this.$http.post('shitter/follows/', {
-            from_user: this.me.username,
-            to_user: this.user.username,
-          })
+          await this.$http.post(`shitter/users/${this.user.username}/follow/`)
         }
         else {
-          await this.$http.delete(`shitter/follows/from/${this.me.username}/to/${this.user.username}`)
+          await this.$http.delete(`shitter/users/${this.user.username}/follow`)
         }
         this.$emit('follow', this.user)
       }
