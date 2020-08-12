@@ -5,11 +5,11 @@
       <list-view :items="shits" :loading="loading">
 
         <template #header>
-          <shit-post @post-shit="createShit"/>
+          <shit-post @newshit="newShit"/>
         </template>
 
         <template #default="{ item }">
-          <shit :shit="item" @favourite="markAsFavourite" @reshit="doReshit" />
+          <shit :shit="item" @favourite="markAsFavourite" />
         </template>
 
         <template #footer>
@@ -44,20 +44,12 @@ export default {
   },
   created() {
     this.fetchShits()
+    this.requestNotificationPermissions()
   },
   methods: {
-    async createShit(text) {
-      try {
-        const { data } = await this.$http.post('shitter/shits/', {
-          text,
-        })
-
-        console.log('shit', data)
-        this.fetchShits()
-      } 
-      catch (error) {
-        console.log('error', error.message)
-      }
+    async newShit(data) {
+      this.fetchShits()
+      this.notify(data)
     },
     async fetchShits() {
       this.loading = true
@@ -84,9 +76,44 @@ export default {
         console.log('error', error)
       }
     },
-    doReshit(shit) {
-      console.log('reshit', shit)
-    }
+    async requestNotificationPermissions() {
+      if ('Notification' in window) {
+        await Notification.requestPermission()
+      }
+    },
+    buildNotification(data) {
+      const router = this.$router
+      
+      const options = {
+        body: data.text,
+        icon: '/img/icons/poop.svg'
+      }
+      const notification = new Notification('Shit created', options)
+
+      notification.addEventListener('click', function() {
+        router.push({
+          name: 'shit-detail',
+          params: {
+            uuid: data.uuid,
+          }
+        })
+      })
+    },
+    async notify(data) {
+      if (!("Notification" in window)) {
+        return
+      }
+      else if (Notification.permission === "granted") {
+        this.buildNotification(data)
+      }
+      else if (Notification.permission !== 'denied') {
+        const permission = await Notification.requestPermission()
+        
+        if (permission === "granted") {
+          this.buildNotification(data)
+        }
+      }
+    },
   }
 }
 </script>

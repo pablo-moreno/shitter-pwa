@@ -37,6 +37,7 @@
   align-items: center;
   justify-content: space-between;
   z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 10px;
 
   .navbar-start {
     display: flex;

@@ -45,6 +45,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/colors.scss';
 
+.list-view {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px;
+}
+
 ul {
   list-style: none;
   margin: 0;

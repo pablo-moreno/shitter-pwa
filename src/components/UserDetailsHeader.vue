@@ -30,7 +30,7 @@
         style="display: none" 
         type="file" 
         id="user-image" 
-        :disabled="user.username === me.username" 
+        :disabled="user.username !== me.username" 
         @change="uploadImage"
       >
 

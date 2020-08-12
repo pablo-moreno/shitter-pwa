@@ -7,7 +7,8 @@
           <img v-if="user.profile.profile_picture" class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.username}`">
           <img v-else class="icon-wrapper icon-small has-background" src="@/assets/user-2.svg" :alt="`@${user.username}`">
         </router-link>
-        <input type="text" v-model="text" placeholder="Write your next shit!" />
+
+        <textarea v-model="text" placeholder="Write your next shit!" maxlength="280" />
       </div>
 
       <button class="default-button">
@@ -29,12 +30,24 @@ export default {
     user: state => state.auth.user
   }),
   methods: {
-    postShit() {
+    async postShit() {
       if (!this.text) {
         return
       }
 
-      this.$emit('post-shit', this.text)
+      try {
+        const response = await this.$http.post('shitter/shits/', {
+          text: this.text,
+        })
+
+        if (response.status === 201) {
+          this.$emit('newshit', response.data)
+        }
+      }
+      catch (error) {
+        console.log('error', error.message)
+      }
+
       this.text = ''
     }
   }
@@ -61,7 +74,8 @@ export default {
     display: flex;
     flex-direction: column;
 
-    input {
+    textarea {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
       width: 100%;
       font-size: 20px;
       padding: .5em;

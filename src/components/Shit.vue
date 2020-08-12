@@ -53,7 +53,7 @@
       </div>
 
       <div class="shit-feedback-item">
-        <button class="link" @click="copyLink">
+        <button class="link">
           <i class="fas fa-link"></i>
         </button>
       </div>
