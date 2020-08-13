@@ -1,13 +1,13 @@
 @import './colors.scss';
 
-.icon-x-small {
-  width: 48px;
-  height: 48px;
-}
-
 .icon-small {
   width: 64px;
   height: 64px;
+
+  @media screen and (max-width: 500px) {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .icon-medium {
@@ -135,4 +135,20 @@ a:hover {
 
 .preserve-line-breaks {
   white-space: pre-line;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $darkgold;
+  padding-bottom: 2em;
+}
+
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background-color: $darkgold;
 }

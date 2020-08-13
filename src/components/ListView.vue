@@ -21,13 +21,21 @@
 
     <footer class="list-view-footer">
       <slot name="footer">
+        <div v-if="loading" class="loading-wrapper">
+          <loading />
+        </div>
       </slot>
     </footer>
   </div>
 </template>
 
 <script>
+import Loading from './Loading'
+
 export default {
+  components: {
+    Loading,
+  },
   props: {
     items: {
       type: Array,
@@ -35,7 +43,7 @@ export default {
     loading: {
       type: Boolean,
       default: false,
-    }
+    },
   }
 }
 </script>

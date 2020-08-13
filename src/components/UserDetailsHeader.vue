@@ -95,7 +95,7 @@
       </section>
 
       <div v-if="user.username === me.username">
-        <shit-post />
+        <shit-post @newshit="$emit('newshit')" />
       </div>
 
     </header>

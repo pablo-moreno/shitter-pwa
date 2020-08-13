@@ -5,7 +5,7 @@
       <list-view :items="shits" :loading="loading">
 
         <template #header>
-          <shit-post @newshit="newShit"/>
+          <shit-post @newshit="newShit" />
         </template>
 
         <template #default="{ item }">
@@ -13,8 +13,15 @@
         </template>
 
         <template #footer>
-          <div>
-
+          <div class="home-list-view-footer">
+            <div class="load-more" v-if="next && !loading">
+              <button class="default-button" @click="nextPage">
+                Load more shits 
+              </button>
+            </div>
+            <div v-if="loading" class="loading-wrapper">
+              <loading />
+            </div>
           </div>
         </template>
 
@@ -27,12 +34,14 @@
 import ListView from '@/components/ListView'
 import Shit from '@/components/Shit'
 import ShitPost from '@/components/ShitPost'
+import Loading from '@/components/Loading'
 
 
 export default {
   name: "Home",
   components: {
     ListView,
+    Loading,
     ShitPost,
     Shit,
   },
@@ -40,6 +49,8 @@ export default {
     return {
       shits: [],
       loading: false,
+      page: 1,
+      next: undefined,
     }
   },
   created() {
@@ -48,14 +59,34 @@ export default {
   },
   methods: {
     async newShit(data) {
-      this.fetchShits()
+      this.fetchShits(false)
       this.notify(data)
     },
-    async fetchShits() {
+    async fetchShits(paginated=true) {
+      let query = {}
+      
+      if (paginated) {
+        query = {
+          page: this.page,
+        }
+      }
+      else {
+        this.page = 1
+        this.next = undefined
+        this.shits = []
+      }
+
       this.loading = true
-      const { data } = await this.$http.get('shitter/shits')
+      const { data } = await this.$http.get('shitter/shits', query)
       this.loading = false
-      this.shits = data.results
+      this.shits = [...this.shits, ...data.results]
+      this.next = data.next
+    },
+    async nextPage() {
+      if (this.next) {
+        this.page++
+        this.fetchShits()
+      }
     },
     async markAsFavourite(shit) {
       try {

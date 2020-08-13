@@ -48,7 +48,6 @@ deploy_prod:
     - build_tag_image
   only:
     - tags
-  when: manual
   script:
     - wget --post-data "" $CD_WEBHOOK
     - touch /tmp/success
