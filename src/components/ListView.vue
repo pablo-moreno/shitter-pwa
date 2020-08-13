@@ -5,7 +5,7 @@
       </slot>
     </header>
 
-    <ul class="list-view-itself">
+    <ul class="list-view-itself" :class="{'has-items': items.length > 0}">
       <li v-for="(item, index) in items" :key="`item-${index}`">
         <slot :item="item">
           
@@ -46,6 +46,7 @@ export default {
 .list-view {
   box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px;
   min-width: 780px;
+  max-width: 1200px;
 
   @media screen and (max-width: 1024px) {
     min-width: 640px;
@@ -59,7 +60,10 @@ export default {
 ul {
   list-style: none;
   margin: 0;
-  padding: 1em;
   background-color: $darkgold;
+
+}
+.has-items {
+  padding: 1em;
 }
 </style>

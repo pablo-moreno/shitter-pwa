@@ -1,11 +1,13 @@
 <template>
   <div class="user-card">
     <div class="user-card-image">
-      <img 
-        class="icon-wrapper icon-small" 
-        :src="user.profile.profile_picture" 
-        :alt="`@${user.username}`"
-      >
+      <div class="user-card-image-wrapper">
+        <img 
+          class="icon-wrapper icon-small" 
+          :src="user.profile.profile_picture" 
+          :alt="`@${user.username}`"
+        >
+      </div>
       <div class="user-card-info">
         <div class="user-card-info-name">
           <h3>
@@ -13,20 +15,14 @@
               {{ user.first_name }}
             </router-link>
           </h3>
-          <span>
+          <span class="badge">
             @{{ user.username }}
           </span>
         </div>
-        <div class="user-card-info-counters">
-          <span>
-            {{ user.total_shits }} shits
-          </span>
-          <span>
-            {{ user.following_count }} following
-          </span>
-          <span>
-            {{ user.followers_count }} followers
-          </span>
+        <div class="user-card-info-description">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus dolore quam totam nihil optio cumque provident quia in, sunt ab incidunt quos consequuntur et, nemo ipsa veniam libero odio exercitationem!
+          </p>
         </div>
       </div>
     </div>
@@ -93,12 +89,30 @@ export default {
   align-items: center;
   justify-content: space-between;
 
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+
   h3 {
     margin: 0;
   }
 
+  &-follow {
+    @media screen and (max-width: 640px) {
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
   &-image {
     display: flex;
+
+    &-wrapper {
+      min-width: 68px;
+    }
   }
 
   &-info {
@@ -114,18 +128,12 @@ export default {
       }
     }
 
-    &-counters {
+    &-description {
       display: flex;
-
-      span {
-        border-radius: 4px;
-        padding: .25em;
-        background-color: $darkgold;
-        margin-right: 1em;
+      p {
+        margin: 0 0 1em 0;
       }
     }
   }
-
-  
 }
 </style>

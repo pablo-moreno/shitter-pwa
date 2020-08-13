@@ -3,9 +3,9 @@
     <form @submit.prevent="postShit">
 
       <div class="shit-post-user">
-        <router-link :to="{name: 'user-details', params: { username: user.username }}">
-          <img v-if="user.profile.profile_picture" class="icon-wrapper icon-small" :src="user.profile.profile_picture" :alt="`@${user.username}`">
-          <img v-else class="icon-wrapper icon-small has-background" src="@/assets/user-2.svg" :alt="`@${user.username}`">
+        <router-link :to="{name: 'user-details', params: { username: me.username }}">
+          <img v-if="me.profile.profile_picture" class="icon-wrapper icon-small" :src="me.profile.profile_picture" :alt="`@${me.username}`">
+          <img v-else class="icon-wrapper icon-small has-background" src="@/assets/user-2.svg" :alt="`@${me.username}`">
         </router-link>
 
         <textarea v-model="text" placeholder="Write your next shit!" maxlength="280" />
@@ -19,16 +19,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
       text: '',
     }
   },
-  computed: mapState({
-    user: state => state.auth.user
-  }),
+  computed: {
+    me() {
+      return this.$store.state.auth.user
+    }
+  },
   methods: {
     async postShit() {
       if (!this.text) {
@@ -84,6 +85,7 @@ export default {
       border-bottom: solid 3px transparent;
       background-color: transparent;
       transition: 0.250s ease-in;
+      white-space: pre-wrap;
 
       &:focus {
         border-bottom: solid 3px darken($darkgold, 10%);
