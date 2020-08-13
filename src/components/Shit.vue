@@ -25,7 +25,7 @@
           </router-link>
         </div>
 
-        <p class="has-pointer" @click="showShitDetail">
+        <p class="has-pointer preserve-line-breaks" @click="showShitDetail">
           {{ shit.text }}
         </p>
       </div>
