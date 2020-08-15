@@ -1,0 +1,17 @@
+version: '3'
+services:
+  frontend:
+    image: node:12.16.3
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - VUE_APP_API_URL=http://backend:8000/api
+    entrypoint: 'bash -c "npm i && npm run test:unit"'
+
+  backend:
+    image: registry.gitlab.com/pablo-moreno/shitter-back:latest
+    environment:
+      - DATABASE_URL=sqlite://sqlite.db
+      - DEBUG=FALSE
+    entrypoint: './runserver.sh'
