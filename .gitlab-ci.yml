@@ -13,7 +13,7 @@ run_tests:
   services:
     - name: registry.gitlab.com/pablo-moreno/shitter-back:latest
       alias: backend
-      entrypoint: ["./runserver"]
+      entrypoint: ["./runserver.sh"]
 
   script:
     - npm i
